@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | AI Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Expense Tracker</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="index.html#reports">Reports</a>
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="profile.html" class="profile-btn"><i class="fas fa-user"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-content">
+            <h2>Your Dashboard</h2>
+            <div class="dashboard-content">
+                <div class="card" data-page="total-expenses.html">
+                    <h3>Total Expenses</h3>
+                    <p>$1,200</p>
+                </div>
+                <div class="card" data-page="total-savings.html">
+                    <h3>Total Savings</h3>
+                    <p>$500</p>
+                </div>
+                <div class="card" data-page="remaining-budget.html">
+                    <h3>Remaining Budget</h3>
+                    <p>$300</p>
+                </div>
+            </div>
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <div class="activity-item">
+                    <i class="fas fa-utensils"></i>
+                    <div class="activity-info">
+                        <p>Dinner at Restaurant</p>
+                        <small>Today, 7:30 PM - $45.50</small>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="activity-info">
+                        <p>Grocery Shopping</p>
+                        <small>Today, 5:15 PM - $78.20</small>
+                    </div>
+                </div>
+            </div>
+            <a href="index.html" class="btn">Back to Home</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI-Powered Expense Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="data-manager.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

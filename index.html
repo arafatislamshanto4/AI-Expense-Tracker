@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Expense Tracker</h1>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="#reports">Reports</a>
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="profile.html" class="profile-btn"><i class="fas fa-user"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="home-section">
+        <div class="container">
+            <h2>Welcome to AI-Powered Expense Tracker</h2>
+            <p>Track your expenses effortlessly with AI-powered insights and analytics.</p>
+            <a href="dashboard.html" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="feature" data-page="expense-tracking.html">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Expense Tracking</h3>
+                    <p>Track your daily expenses with ease.</p>
+                </div>
+                <div class="feature" data-page="savings-goals.html">
+                    <i class="fas fa-piggy-bank"></i>
+                    <h3>Savings Goals</h3>
+                    <p>Set and achieve your savings goals.</p>
+                </div>
+                <div class="feature" data-page="expense-categories.html">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Expense Categories</h3>
+                    <p>Categorize your expenses for better insights.</p>
+                </div>
+                <div class="feature" data-page="alerts.html">
+                    <i class="fas fa-bell"></i>
+                    <h3>Alerts & Reminders</h3>
+                    <p>Get alerts for due payments and budgets.</p>
+                </div>
+                <div class="feature" data-page="expense-reports.html">
+                    <i class="fas fa-file-invoice"></i>
+                    <h3>Expense Reports</h3>
+                    <p>Generate detailed expense reports.</p>
+                </div>
+                <div class="feature" data-page="ai-insights.html">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI Insights</h3>
+                    <p>Get AI-powered spending insights.</p>
+                </div>
+                <div class="feature" data-page="mobile-app.html">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Friendly</h3>
+                    <p>Access your expenses on the go.</p>
+                </div>
+                <div class="feature" data-page="security.html">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure & Private</h3>
+                    <p>Your data is safe with us.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="dashboard-section">
+        <div class="container">
+            <h2>Dashboard</h2>
+            <p>View your expenses and savings in one place.</p>
+            <div class="dashboard-content">
+                <div class="card" data-page="total-expenses.html">
+                    <h3>Total Expenses</h3>
+                    <p>$1,200</p>
+                </div>
+                <div class="card" data-page="total-savings.html">
+                    <h3>Total Savings</h3>
+                    <p>$500</p>
+                </div>
+                <div class="card" data-page="remaining-budget.html">
+                    <h3>Remaining Budget</h3>
+                    <p>$300</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reports" class="reports-section">
+        <div class="container">
+            <h2>Reports</h2>
+            <p>Generate and download detailed expense reports.</p>
+            <div class="reports-content">
+                <div class="report-card" data-page="monthly-report.html">
+                    <h3>Monthly Report</h3>
+                    <p>Download your monthly expense report.</p>
+                    <a href="#" class="btn">Download</a>
+                </div>
+                <div class="report-card" data-page="yearly-report.html">
+                    <h3>Yearly Report</h3>
+                    <p>Download your yearly expense report.</p>
+                    <a href="#" class="btn">Download</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Add this button somewhere in your index.html -->
+<button id="downloadDummyData" class="btn">Download Dummy Data</button>
+
+<script>
+document.getElementById('downloadDummyData').addEventListener('click', function() {
+    const dummyData = {
+        expenses: [
+            { amount: 45.50, category: "Food & Dining", date: "2025-05-01", notes: "Dinner out" },
+            { amount: 78.20, category: "Shopping", date: "2025-05-01", notes: "Groceries" },
+            { amount: 25.50, category: "Food & Dining", date: "2025-04-30", notes: "Lunch" }
+        ],
+        categories: [
+            { name: "Food & Dining", icon: "fa-utensils", budget: 500, spent: 350 },
+            { name: "Transportation", icon: "fa-car", budget: 200, spent: 120 }
+        ],
+        savingsGoals: [
+            { name: "New Car", target: 10000, current: 2500, date: "2026-01-01" }
+        ]
+    };
+    
+    const blob = new Blob([JSON.stringify(dummyData, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'expense-tracker-dummy-data.json';
+    a.click();
+    URL.revokeObjectURL(url);
+});
+</script>
+<!-- Add this somewhere in your index.html -->
+<div style="margin: 20px 0;">
+    <input type="file" id="importData" accept=".json" style="display: none;">
+    <label for="importData" class="btn">Import Data</label>
+</div>
+
+<script>
+document.getElementById('importData').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            dataManager.importData(data);
+            alert('Data imported successfully!');
+        } catch (error) {
+            alert('Error importing data: ' + error.message);
+        }
+    };
+    reader.readAsText(file);
+});
+</script>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI-Powered Expense Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="data-manager.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

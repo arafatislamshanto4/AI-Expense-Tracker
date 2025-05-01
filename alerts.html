@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts & Reminders | AI Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Expense Tracker</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="index.html#reports">Reports</a>
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="profile.html" class="profile-btn"><i class="fas fa-user"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-content">
+            <h2><i class="fas fa-bell"></i> Alerts & Reminders</h2>
+            <div class="feature-description">
+                <p>Stay on top of your finances with timely notifications and reminders.</p>
+            </div>
+            
+            <div class="alerts-management">
+                <div class="alerts-form">
+                    <h3>Create New Alert</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="alert-type">Alert Type</label>
+                            <select id="alert-type" required>
+                                <option value="">Select alert type</option>
+                                <option value="budget">Budget Limit</option>
+                                <option value="bill">Bill Reminder</option>
+                                <option value="savings">Savings Goal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="alert-message">Message</label>
+                            <input type="text" id="alert-message" placeholder="Enter alert message" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="alert-date">Date/Time</label>
+                            <input type="datetime-local" id="alert-date">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="recurring">
+                                Recurring Alert
+                            </label>
+                        </div>
+                        <button type="submit" class="btn">Create Alert</button>
+                    </form>
+                </div>
+                
+                <div class="alerts-list">
+                    <h3>Your Active Alerts</h3>
+                    <div class="alert-item">
+                        <div class="alert-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Budget Limit: Food & Dining</h4>
+                            <p>You've spent 90% of your monthly budget</p>
+                            <p class="alert-time">Today, 2:30 PM</p>
+                        </div>
+                        <div class="alert-actions">
+                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="index.html" class="btn">Back to Home</a>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alertForm = document.querySelector('.alerts-form form');
+            const alertsContainer = document.querySelector('.alerts-list');
+        
+            // Load alerts
+            function loadAlerts() {
+                alertsContainer.innerHTML = '<h3>Your Active Alerts</h3>';
+                
+                if (dataManager.alerts.length === 0) {
+                    alertsContainer.innerHTML += '<p>No active alerts</p>';
+                    return;
+                }
+        
+                dataManager.alerts.forEach(alert => {
+                    const alertItem = document.createElement('div');
+                    alertItem.className = 'alert-item';
+                    alertItem.innerHTML = `
+                        <div class="alert-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>${alert.type === 'budget' ? 'Budget: ' + alert.category : alert.type}</h4>
+                            <p>${alert.message}</p>
+                            <p class="alert-time">${new Date(alert.date).toLocaleString()}</p>
+                        </div>
+                        <div class="alert-actions">
+                            <button class="btn-icon delete-btn" data-id="${alert.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    alertsContainer.appendChild(alertItem);
+                });
+        
+                // Add delete handlers
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const alertId = parseInt(this.getAttribute('data-id'));
+                        dataManager.deleteAlert(alertId);
+                        loadAlerts();
+                    });
+                });
+            }
+        
+            // Handle form submission
+            if (alertForm) {
+                alertForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const newAlert = {
+                        type: document.getElementById('alert-type').value,
+                        message: document.getElementById('alert-message').value,
+                        date: document.getElementById('alert-date').value || new Date().toISOString(),
+                        recurring: document.getElementById('recurring').checked
+                    };
+        
+                    if (newAlert.type === 'budget') {
+                        newAlert.category = 'Food & Dining';
+                    }
+        
+                    dataManager.addAlert(newAlert);
+                    alertForm.reset();
+                    loadAlerts();
+                });
+            }
+        
+            // Initial load
+            loadAlerts();
+        });
+        </script>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI-Powered Expense Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="data-manager.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

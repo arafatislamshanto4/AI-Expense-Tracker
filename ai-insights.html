@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Insights | AI Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Expense Tracker</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="index.html#reports">Reports</a>
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="profile.html" class="profile-btn"><i class="fas fa-user"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-content">
+            <h2><i class="fas fa-robot"></i> AI Insights</h2>
+            <div class="feature-description">
+                <p>Get intelligent analysis and personalized recommendations based on your spending patterns.</p>
+            </div>
+            
+            <div class="insights-container">
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Spending Patterns</h3>
+                    </div>
+                    <div class="insight-content">
+                        <p>Your spending on dining out has increased by 25% compared to last month.</p>
+                        <div class="insight-chart">
+                            <!-- Chart would be rendered here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-piggy-bank"></i>
+                        <h3>Savings Opportunity</h3>
+                    </div>
+                    <div class="insight-content">
+                        <p>You could save approximately $120/month by reducing subscription services.</p>
+                        <ul class="savings-list">
+                            <li>Streaming services: $45/month</li>
+                            <li>Gym membership: $60/month</li>
+                            <li>Cloud storage: $15/month</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Upcoming Expenses</h3>
+                    </div>
+                    <div class="insight-content">
+                        <p>Based on your history, these expenses are likely coming up:</p>
+                        <div class="upcoming-expenses">
+                            <div class="expense-item">
+                                <span class="expense-name">Car Insurance</span>
+                                <span class="expense-amount">~$150</span>
+                                <span class="expense-date">Around 15th of next month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Budget Forecast</h3>
+                    </div>
+                    <div class="insight-content">
+                        <p>At your current spending rate, you'll have $300 remaining this month.</p>
+                        <div class="forecast-chart">
+                            <!-- Forecast chart would be here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ai-suggestions">
+                <h3>AI Suggestions</h3>
+                <div class="suggestion">
+                    <p>"Consider meal prepping to reduce your food expenses which are 15% above your budget."</p>
+                    <button class="btn-small">View Plan</button>
+                </div>
+            </div>
+            
+            <a href="index.html" class="btn">Back to Home</a>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const insights = dataManager.generateInsights();
+        
+            // Update spending patterns
+            const spendingPatternEl = document.querySelector('.insight-card:nth-child(1) .insight-content p');
+            if (spendingPatternEl) {
+                spendingPatternEl.textContent = insights.spendingPatterns;
+            }
+        
+            // Update savings opportunities
+            const savingsListEl = document.querySelector('.savings-list');
+            if (savingsListEl) {
+                savingsListEl.innerHTML = insights.savingsOpportunities.map(item => 
+                    `<li>${item.name}: $${item.amount}/month</li>`
+                ).join('');
+            }
+        
+            // Update upcoming expenses
+            const upcomingExpensesEl = document.querySelector('.upcoming-expenses');
+            if (upcomingExpensesEl) {
+                if (insights.upcomingExpenses.length > 0) {
+                    upcomingExpensesEl.innerHTML = insights.upcomingExpenses.map(expense => `
+                        <div class="expense-item">
+                            <span class="expense-name">${expense.name}</span>
+                            <span class="expense-amount">~$${expense.amount.toFixed(2)}</span>
+                            <span class="expense-date">Around ${new Date(expense.date).toLocaleDateString()}</span>
+                        </div>
+                    `).join('');
+                } else {
+                    upcomingExpensesEl.innerHTML = '<p>No upcoming recurring expenses detected</p>';
+                }
+            }
+        
+            // Update budget forecast
+            const budgetForecastEl = document.querySelector('.insight-card:nth-child(4) .insight-content p');
+            if (budgetForecastEl) {
+                budgetForecastEl.textContent = insights.budgetForecast;
+            }
+        
+            // Update AI suggestion
+            const suggestionEl = document.querySelector('.ai-suggestions .suggestion p');
+            if (suggestionEl && insights.spendingPatterns.includes('over budget')) {
+                suggestionEl.textContent = `"Consider reducing your ${insights.spendingPatterns.match(/on (.*?) is/)[1]} spending which is over budget."`;
+            }
+        });
+        </script>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI-Powered Expense Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="data-manager.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

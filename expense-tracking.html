@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracking | AI Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Expense Tracker</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="index.html#reports">Reports</a>
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="profile.html" class="profile-btn"><i class="fas fa-user"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-content">
+            <h2><i class="fas fa-chart-line"></i> Expense Tracking</h2>
+            <div class="feature-description">
+                <p>Track and manage all your expenses in one place with our intuitive interface.</p>
+            </div>
+            
+            <div class="expense-form">
+                <h3>Add New Expense</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" placeholder="$0.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" required>
+                            <option value="">Select category</option>
+                            <option value="food">Food & Dining</option>
+                            <option value="transport">Transportation</option>
+                            <option value="housing">Housing</option>
+                            <option value="entertainment">Entertainment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Add Expense</button>
+                </form>
+            </div>
+            
+            <div class="recent-expenses">
+                <h3>Recent Expenses</h3>
+                <div class="expense-list">
+                    <div class="expense-item">
+                        <div class="expense-info">
+                            <span class="amount">$25.50</span>
+                            <span class="category">Food & Dining</span>
+                            <span class="date">Today</span>
+                        </div>
+                        <div class="expense-actions">
+                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="expense-item">
+                        <div class="expense-info">
+                            <span class="amount">$78.20</span>
+                            <span class="category">Groceries</span>
+                            <span class="date">Today</span>
+                        </div>
+                        <div class="expense-actions">
+                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="index.html" class="btn">Back to Home</a>
+        </section>
+    </main>
+    <script>
+        // Load recent expenses
+        document.addEventListener('DOMContentLoaded', function() {
+            const recentExpensesContainer = document.querySelector('.expense-list');
+            if (recentExpensesContainer) {
+                recentExpensesContainer.innerHTML = '';
+                
+                // Get last 5 expenses
+                const recentExpenses = dataManager.expenses.slice(-5).reverse();
+                
+                recentExpenses.forEach(expense => {
+                    const expenseItem = document.createElement('div');
+                    expenseItem.className = 'expense-item';
+                    expenseItem.innerHTML = `
+                        <div class="expense-info">
+                            <span class="amount">$${expense.amount.toFixed(2)}</span>
+                            <span class="category">${expense.category}</span>
+                            <span class="date">${new Date(expense.date).toLocaleDateString()}</span>
+                        </div>
+                        <div class="expense-actions">
+                            <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                        </div>
+                    `;
+                    recentExpensesContainer.appendChild(expenseItem);
+                });
+            }
+        });
+        </script>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI-Powered Expense Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="data-manager.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

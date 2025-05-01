@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings Goals | AI Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Expense Tracker</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="index.html#reports">Reports</a>
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="profile.html" class="profile-btn"><i class="fas fa-user"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-content">
+            <h2><i class="fas fa-piggy-bank"></i> Savings Goals</h2>
+            <div class="feature-description">
+                <p>Set and track your financial goals to achieve your dreams.</p>
+            </div>
+            
+            <div class="savings-form">
+                <h3>Create New Goal</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="goal-name">Goal Name</label>
+                        <input type="text" id="goal-name" placeholder="e.g., Vacation Fund" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="target-amount">Target Amount</label>
+                        <input type="number" id="target-amount" placeholder="$0.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="target-date">Target Date</label>
+                        <input type="date" id="target-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="current-amount">Current Amount</label>
+                        <input type="number" id="current-amount" placeholder="$0.00">
+                    </div>
+                    <button type="submit" class="btn">Create Goal</button>
+                </form>
+            </div>
+            
+            <div class="goals-list">
+                <h3>Your Goals</h3>
+                <div class="goal-item">
+                    <div class="goal-progress">
+                        <div class="progress-bar" style="width: 45%"></div>
+                    </div>
+                    <div class="goal-info">
+                        <h4>Emergency Fund</h4>
+                        <p>$900 saved of $2,000</p>
+                        <p>Target: December 2025</p>
+                    </div>
+                    <div class="goal-actions">
+                        <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                        <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-progress">
+                        <div class="progress-bar" style="width: 75%"></div>
+                    </div>
+                    <div class="goal-info">
+                        <h4>Vacation Fund</h4>
+                        <p>$1,500 saved of $2,000</p>
+                        <p>Target: June 2025</p>
+                    </div>
+                    <div class="goal-actions">
+                        <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                        <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="index.html" class="btn">Back to Home</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI-Powered Expense Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="data-manager.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

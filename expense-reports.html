@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Reports | AI Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Expense Tracker</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="index.html#reports">Reports</a>
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="profile.html" class="profile-btn"><i class="fas fa-user"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-content">
+            <h2><i class="fas fa-file-invoice"></i> Expense Reports</h2>
+            <div class="feature-description">
+                <p>Generate detailed reports of your spending habits and financial trends.</p>
+            </div>
+            
+            <div class="reports-options">
+                <div class="report-type">
+                    <h3>Quick Reports</h3>
+                    <div class="quick-reports">
+                        <button class="btn">This Month</button>
+                        <button class="btn">Last Month</button>
+                        <button class="btn">This Year</button>
+                        <button class="btn">Custom Range</button>
+                    </div>
+                </div>
+                
+                <div class="report-type">
+                    <h3>Detailed Reports</h3>
+                    <form class="detailed-report-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="report-type">Report Type</label>
+                                <select id="report-type" required>
+                                    <option value="">Select report type</option>
+                                    <option value="category">By Category</option>
+                                    <option value="time">By Time Period</option>
+                                    <option value="payment">By Payment Method</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="date-range">Date Range</label>
+                                <select id="date-range" required>
+                                    <option value="custom">Custom</option>
+                                    <option value="week">Last 7 Days</option>
+                                    <option value="month">Last 30 Days</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="start-date">Start Date</label>
+                                <input type="date" id="start-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="end-date">End Date</label>
+                                <input type="date" id="end-date">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">Generate Report</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="report-preview">
+                <h3>Report Preview</h3>
+                <div class="chart-placeholder">
+                    <p>Your report visualization will appear here</p>
+                </div>
+                <div class="report-actions">
+                    <button class="btn"><i class="fas fa-download"></i> Download PDF</button>
+                    <button class="btn"><i class="fas fa-envelope"></i> Email Report</button>
+                </div>
+            </div>
+            
+            <a href="index.html" class="btn">Back to Home</a>
+        </section>
+    </main>
+    <script>
+        // Simple download function for expense reports
+        document.querySelector('.report-actions .btn:first-child').addEventListener('click', function(e) {
+            e.preventDefault();
+            const dummyData = `Custom Expense Report
+        ====================
+        Period: ${new Date().toLocaleDateString()}
+        Total Expenses: $2,450
+        
+        Category Breakdown:
+        - Food & Dining: $650
+        - Transportation: $320
+        - Housing: $1,100
+        - Entertainment: $380`;
+            
+            const blob = new Blob([dummyData], {type: 'text/plain'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'expense-report.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+        </script>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI-Powered Expense Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="data-manager.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

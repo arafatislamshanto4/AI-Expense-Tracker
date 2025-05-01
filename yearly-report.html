@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearly Report | AI Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Expense Tracker</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="index.html#reports">Reports</a>
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="profile.html" class="profile-btn"><i class="fas fa-user"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-content">
+            <h2><i class="fas fa-file-alt"></i> Yearly Expense Report</h2>
+            <div class="report-options">
+                <div class="year-selector">
+                    <label for="report-year">Select Year:</label>
+                    <select id="report-year">
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                    </select>
+                    <button class="btn">Generate Report</button>
+                </div>
+            </div>
+            
+            <div class="report-summary">
+                <div class="summary-card">
+                    <h3>Total Expenses</h3>
+                    <p class="amount">$14,520</p>
+                    <p class="comparison">+8% from last year</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Total Savings</h3>
+                    <p class="amount">$3,450</p>
+                    <p class="comparison">+12% from last year</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Average Monthly</h3>
+                    <p class="amount">$1,210</p>
+                    <p class="comparison">+5% from last year</p>
+                </div>
+            </div>
+            
+            <div class="report-visualization">
+                <h3>Monthly Breakdown</h3>
+                <div class="chart-placeholder">
+                    <p>Monthly expense chart would be displayed here</p>
+                </div>
+            </div>
+            
+            <div class="category-breakdown">
+                <h3>Category Breakdown</h3>
+                <div class="category-grid">
+                    <div class="category-item">
+                        <h4>Housing</h4>
+                        <p>$7,200 (49.6%)</p>
+                        <div class="progress-bar" style="width: 49.6%"></div>
+                    </div>
+                    <div class="category-item">
+                        <h4>Food</h4>
+                        <p>$2,880 (19.8%)</p>
+                        <div class="progress-bar" style="width: 19.8%"></div>
+                    </div>
+                    <div class="category-item">
+                        <h4>Transportation</h4>
+                        <p>$1,740 (12%)</p>
+                        <div class="progress-bar" style="width: 12%"></div>
+                    </div>
+                    <div class="category-item">
+                        <h4>Entertainment</h4>
+                        <p>$1,020 (7%)</p>
+                        <div class="progress-bar" style="width: 7%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="report-actions">
+                <button class="btn"><i class="fas fa-download"></i> Download PDF</button>
+                <button class="btn"><i class="fas fa-print"></i> Print Report</button>
+                <button class="btn"><i class="fas fa-envelope"></i> Email Report</button>
+            </div>
+            
+            <a href="index.html" class="btn">Back to Home</a>
+        </section>
+    </main>
+    <script>
+        // Simple download function for yearly report
+        document.querySelector('.report-actions .btn:first-child').addEventListener('click', function(e) {
+            e.preventDefault();
+            const dummyData = `Yearly Expense Report (2025)
+        =======================
+        Total Expenses: $14,520
+        Total Savings: $3,450
+        Average Monthly: $1,210
+        
+        Category Breakdown:
+        - Housing: $7,200 (49.6%)
+        - Food: $2,880 (19.8%)
+        - Transportation: $1,740 (12%)
+        - Entertainment: $1,020 (7%)`;
+            
+            const blob = new Blob([dummyData], {type: 'text/plain'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'yearly-expense-report.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+        </script>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI-Powered Expense Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="data-manager.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
